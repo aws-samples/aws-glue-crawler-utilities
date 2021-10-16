@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Id": "s3_to_sns_events_access_policy_1",
+  "Statement": [
+    {
+      "Sid": "s3_to_sns_events_stmt_1",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "s3.amazonaws.com"
+      },
+      "Action": "SNS:Publish",
+      "Resource": "arn:aws:sns:us-east-1:<account_number>:s3_event_notifications_topic",
+      "Condition": {
+        "StringEquals": {
+          "aws:SourceAccount": "<account_number>"
+        },
+        "ArnLike": {
+          "aws:SourceArn": "arn:aws:s3:*:*:<bucket_name>"
+        }
+      }
+    }
+  ]
+}
