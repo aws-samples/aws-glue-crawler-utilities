@@ -1,0 +1,28 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<account_number>:role/service-role/s3_event_notifications_crawler_iam_role"
+      },
+      "Action": "SQS:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "topic-subscription-arn:aws:sns:us-east-1:<account_number>:s3_event_notifications_topic",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "SQS:SendMessage",
+      "Resource": "arn:aws:sqs:us-east-1:<account_number>:s3_event_notifications_queue",
+      "Condition": {
+        "ArnLike": {
+          "aws:SourceArn": "arn:aws:sns:us-east-1:<account_number>:s3_event_notifications_topic"
+        }
+      }
+    }
+  ]
+}
