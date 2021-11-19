@@ -5,7 +5,7 @@
       "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::<account_number>:role/service-role/s3_event_notifications_crawler_iam_role"
+        "AWS": "arn:aws:iam::<account_number>:role/s3_event_notifications_crawler_iam_role"
       },
       "Action": "SQS:*",
       "Resource": "*"

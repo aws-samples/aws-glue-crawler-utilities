@@ -8,7 +8,7 @@
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::<bucket_name>/nyc_data*"
+                "arn:aws:s3:::<bucket_name>/nyc_data/*"
             ]
         }
     ]
