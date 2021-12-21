@@ -124,7 +124,7 @@ def set_sns_topic_policy(topic_arn, client, bucket_name):
               "Id": "s3-publish-to-sns",
               "Statement": [{
                   "Effect": "Allow",
-                  "Principal": { "AWS" : "*" },
+                  "Principal": { "AWS": "%s" },
                   "Action": [ "SNS:Publish" ],
                   "Resource": "%s",
                   "Condition": {
@@ -136,7 +136,7 @@ def set_sns_topic_policy(topic_arn, client, bucket_name):
                       }
                   }
               }]
-  }''' % (topic_arn, account_id, bucket_name)
+  }''' % (topic_arn, account_id,account_id,bucket_name)
         )
         return True
     except botocore.exceptions.ClientError as e:
@@ -194,7 +194,7 @@ def set_sqs_policy(queue_url, queue_arn, client, topic_arn):
                     {
                       "Sid": "AllowSNSPublish01",
                       "Effect": "Allow",
-                      "Principal": "*",
+                      "Principal": { "AWS": "%s" },
                       "Action": "SQS:SendMessage",
                       "Resource": "%s",
                       "Condition": {
@@ -204,7 +204,7 @@ def set_sqs_policy(queue_url, queue_arn, client, topic_arn):
                       }
                     }
                   ]
-}''' % (queue_arn, topic_arn)
+}''' % (account_id,queue_arn, topic_arn)
             }
         )
         return True
